@@ -1,0 +1,14 @@
+1. Generating a new ssh key: It creates a new ssh key , using the provided email as a label
+a.  Syntax :   ssh-keygen -t rsa -b 4096 -C "shuravigautam@gmail.com"
+b.   Sysntax:    ls | grep Help     (it gives private and public key name)      
+b. how to print public ssh key from command line ?
+Ans: #user directory # .ssh # public key # edit with notepad # copy # paste to the github ssh key
+2. how to check ssh key exist or not ?
+ls -al ~/.ssh
+
+ 3. Adding SSH Key to the ssc-agent
+a. Syntaxt for starting SSH Agent:
+eval "$(ssh-agent -s)"
+b. Add SSH private Keys to ssh-agent.
+ssh-add ~/.ssh/id_rsa
+
