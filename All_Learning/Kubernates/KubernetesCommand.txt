@@ -1,0 +1,46 @@
+1. How to set alias in kubernetes ?
+AnS: vi ~/.bashrc         -- > write command in this vim
+To use alias :  source ~/.bashrc
+
+Alias command :
+alias pods ="kubectl get pods"
+alias svc ="kubectl get svc"
+
+2. How to do curl for any microservices in eks cluster or in puty
+Ans: curl http://instanceIpOfMicroserivces:port/verizon/pormetheus
+here: we can find InstanceIpOfMicroservices in microservice pod ( kubectl get pods)
+
+3. commands:
+
+kubectl get secrets    -> it gives secret of kubernetes
+kubectl edit secrets <name of secret>  -> edit the secret
+kubectl get hpa  | grep microserviceanme   -> gives hpa
+kubectl describe hpa  <hap name>    	-> describe hpa
+kubectl get rs | grep microservicename    -> replica set gives
+kubectl get pods --show-labels | grep ms  -> gives pods running wiht label
+kubectl get hpa <hpa-name> --watch     -> watch hpa activities in run time , ctrl+c to exit
+kubectl logs <pod name>   > podname.txt    -> will copy the log in podname.txt
+kubectl top node  (it gives metric server is running or not)
+kubectl top pod -A | grep service_A    (it will give metric server resources used in service_A)
+kubectl exec -it <pod name> --env | grep AUTH  (it will give auth key secret)
+kubectl exec -it <pod name> --env | grep AUTH | od -c
+
+
+
+
+4. How to do email from kubernetes or linux machine
+
+mail shura@gmail.com  < podname.txt       -> will send the email to shuravi
+mail -s "production issue" shura@gmail.com  < podname.txt    -> will send email wiht subject
+mail -s "Subject Here" user@example.com -A backup.zip
+ mail -s "my attachment" -a file1.txt  user@example.com  < file1.txt
+
+5. Port forward :
+kubectl port-forward --address 0.0.0.0 pod/<podname> 64800:64800     
+output -> forwarding from 0.0.0.0:64800 -> 64800
+--> here we can check now from localhost : curl http://localhost:64800/verizon/prometheus
+-- >> this will give us capability to check kubernetes pods or cluster from our local host or machine
+
+ss -ltn    (it will give listening port)
+     
+
