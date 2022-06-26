@@ -1,3 +1,8 @@
+# - > this sign is for root user - > yum
+$  -> this sign is for user	-> sudo 
+ubuntu use -- > apt
+
+
 1. How to set alias in kubernetes ?
 AnS: vi ~/.bashrc         -- > write command in this vim
 To use alias :  source ~/.bashrc
@@ -26,6 +31,14 @@ kubectl exec -it <pod name> --env | grep AUTH  (it will give auth key secret)
 kubectl exec -it <pod name> --env | grep AUTH | od -c
 
 
+EKS :
+*********************************
+eksctl create cluster --name cubic-eks --region us-east-2 --nodegroup-name cubic-nodes --node-type t3.small --managed --nodes 2  (To create cluster)
+ eksctl get cluster --name cubic-eks --region us-east-2  (it will give cluster up and running
+ 
+
+
+
 
 
 4. How to do email from kubernetes or linux machine
@@ -42,5 +55,15 @@ output -> forwarding from 0.0.0.0:64800 -> 64800
 -- >> this will give us capability to check kubernetes pods or cluster from our local host or machine
 
 ss -ltn    (it will give listening port)
+
+
+######################################
+package mangament and install and uninstall in linux  -- > Cheetsheet  - > https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet 
+#############################################
+find / -name javac      -- > it gives java path available in linux
+ls -la   
+man yum   -- > it gives all command uses in root user
+              
+
      
 
