@@ -1,0 +1,33 @@
+1. if we want to assign variable in calling method 
+put crussro at the end of line - > ctrl+1+Enter
+eg. - >  postservice.getAllPostByPagination(pageNumber, pageSize);   if we put on the last of this line and do : ctrl+1+Enter 
+then it will give appropriate variable : PostResponse allPostBy= postservice.getAllPostByPagination(pageNumber, pageSize);
+
+2. How to find method call ?
+ctrl + shift + G   -> select the method and perform given action
+
+3. ctrl + O  -> do this in class and it will gives all teh method associatd with this class
+
+3. ctrl + H  -> select project and perform such action to search
+
+4. ctrl + f - > to find string in text
+
+5.  alt + control + tab  - > only once click , to show all the  pages
+
+6. ctrl + shift + R  -> to find the class in eclipse
+
+7. ctrl + shift + k  - > to know where is it emplemented 
+
+8.  ctrl + shift + O -> to remove unused import 
+
+9.  ctrl + L  -> which line you want to go
+
+10 .  How to remove debug line in eclipse :
+window -> show view - > break points - > click on XX butoon
+
+
+##########################
+Hwo  to run maven project in command line
+#########################
+go to porject folder - (dir)shows all the folder -> start .  -> mvn install -> Building jar (it creates the target folder ) 
+-> java -jar < target/ .......building jar path-> can be found in command line when we do mavn install)

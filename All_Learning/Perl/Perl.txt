@@ -1,0 +1,3 @@
+How to execute perl programm in window?
+Ans: perl.pl file is having perl script in documents
+now mount directory to document and : perl perl.pl -- > command will execute
