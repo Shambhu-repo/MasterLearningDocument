@@ -21,6 +21,7 @@ ctrl + shift + G   -> select the method and perform given action
 8.  ctrl + shift + O -> to remove unused import 
 
 9.  ctrl + L  -> which line you want to go
+9. alt+ shift +R  - > to change the variable that applicable for all the place
 
 10 .  How to remove debug line in eclipse :
 window -> show view - > break points - > click on XX butoon
