@@ -1,0 +1,9 @@
+MEMORY:
+request: -> required memory to startup the application
+limit: maximum memory can be consumed
+target : -> this is less than request ( when memory reach near to request and still application not starting then hpa will auto scale for memory)
+
+CPU:
+request : required memory to process the applicaiton startup
+limit: maximum cpu (core or milicore) can be used
+target : less thna request ( eg. if 800m milicore cpu as request then if target is 80% meaning -> 800x80/100 = 640m milicore is target . if processing exceeds 640m of cup then hpa autoscale

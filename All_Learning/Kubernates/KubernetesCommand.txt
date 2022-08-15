@@ -57,12 +57,11 @@ output -> forwarding from 0.0.0.0:64800 -> 64800
 ss -ltn    (it will give listening port)
 
 
-######################################
-package mangament and install and uninstall in linux  -- > Cheetsheet  - > https://danilodellaquila.com/en/blog/linux-package-management-cheatsheet 
-#############################################
-find / -name javac      -- > it gives java path available in linux
-ls -la   
-man yum   -- > it gives all command uses in root user
+5. create and debug pod
+
+
+
+
               
 
      
