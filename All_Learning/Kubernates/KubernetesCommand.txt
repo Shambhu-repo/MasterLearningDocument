@@ -54,7 +54,7 @@ output -> forwarding from 0.0.0.0:64800 -> 64800
 --> here we can check now from localhost : curl http://localhost:64800/verizon/prometheus
 -- >> this will give us capability to check kubernetes pods or cluster from our local host or machine
 
-ss -ltn    (it will give listening port)
+ss -ltn    (it will give listening port) socketSummary --
 
 
 5. create and debug pod
