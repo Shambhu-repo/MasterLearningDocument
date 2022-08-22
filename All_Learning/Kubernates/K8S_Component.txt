@@ -1,0 +1,28 @@
+Kubernetes component :
+***********************
+pods
+service
+ingress
+volumes
+configmap
+Secrets
+Deployment
+statefulset - > for database
+stateless - > for microservices
+*****************************
+
+Node process
+***********
+kubelet
+kube proxy
+Container runtime
+*******************
+
+Master (Node) process 4 process
+****************
+1.Api Server (Main entry point to k8s cluster)- - > validate request - - >2. Scheduler( see wheree to put pod or which node is having least load to put the new pod
+ - - > 3.Controller manager(detects pod states) - - > kubelet ( responsible to start the container in cluster) - > pod
+4.etcd -> key value pair, cluster brain , it will store the cluster's data about pod and containers condition
+
+
+
