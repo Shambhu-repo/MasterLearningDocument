@@ -23,6 +23,8 @@ kubectl get hpa  | grep microserviceanme   -> gives hpa
 kubectl describe hpa  <hap name>    	-> describe hpa
 kubectl get rs | grep microservicename    -> replica set gives
 kubectl get pods --show-labels | grep ms  -> gives pods running wiht label
+kubectl get pod       -> gives pods of all services
+kubectl describe pod <podName>   - > gives description of pod and we can check --Exit Code-- to know why and what happening in pod (https://komodor.com/learn/exit-codes)
 kubectl get hpa <hpa-name> --watch     -> watch hpa activities in run time , ctrl+c to exit
 kubectl logs <pod name>   > podname.txt    -> will copy the log in podname.txt
 kubectl top node  (it gives metric server is running or not)
@@ -30,7 +32,7 @@ kubectl top pod -A | grep service_A    (it will give metric server resources use
 kubectl exec -it <pod name> --env | grep AUTH  (it will give auth key secret)
 kubectl exec -it <pod name> --env | grep AUTH | od -c
 echo -n 'username' | base64
-
+https://komodor.com/learn/exit-codes-in-containers-and-kubernetes-the-complete-guide/
 
 EKS :
 *********************************
