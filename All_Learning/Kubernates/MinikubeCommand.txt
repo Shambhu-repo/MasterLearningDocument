@@ -1,0 +1,7 @@
+minikube start 						 --> start the minikube
+minikube dashboard 					 --> give minikube dashboard url
+minikube service <service Name> --url  		--> runs as a serive and creae a tunnel to cluster and connect to service pod.The command exposes the service directly to any program running on the host operating system.
+   minikube jenkins url : http://127.0.0.1:33543  (i configured it to run the jenkin job and to check the minikube cluster )
+
+
+
