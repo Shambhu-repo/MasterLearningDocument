@@ -33,6 +33,8 @@ kubectl exec -it <pod name> --env | grep AUTH  (it will give auth key secret)
 kubectl exec -it <pod name> --env | grep AUTH | od -c
 echo -n 'username' | base64
 https://komodor.com/learn/exit-codes-in-containers-and-kubernetes-the-complete-guide/
+kubectl logs --tail=1000 <pod name> | tee eliminator-01.log        --> it will creae the file and at the same time show the logs in terminal
+sed -i 's/apply kubernetes:(.+)/apply kubernetes:masked/g'           --> it will mask the 
 
 EKS :
 *********************************
@@ -61,6 +63,11 @@ ss -ltn    (it will give listening port) socketSummary --
 
 
 5. create and debug pod
+
+
+
+6.------
+what is eval ? waht is sed 
 
 
 

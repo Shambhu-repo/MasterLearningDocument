@@ -1,0 +1,8 @@
+not able to integrate with mysql and springboot application
+
+-- >we deploy mysql in kubernetes
+kubectl exec -it <mysql pods>  /bin/bash   -- > it will take to mysql pod execution mode
+---- > 
+then :
+mysql -h mysql -u root -p        -- > it will ask password to get connectio (note sometimee -h gives error so no need to mention in some case)
+show databases ;     			--> it will show databases  
