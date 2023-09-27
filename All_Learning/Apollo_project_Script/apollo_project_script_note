@@ -1,0 +1,5 @@
+this is the script which will connect to aws managed node (k8s)
+work with helm and oneartifactory repository.
+
+this script will be used by jenkins job which will provide the 
+argument for the parameter used in this script:
