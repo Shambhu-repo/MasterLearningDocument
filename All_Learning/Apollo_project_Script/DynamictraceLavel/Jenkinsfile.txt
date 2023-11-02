@@ -1,0 +1,51 @@
+#! /usr/bin/groovy
+
+pipeline{
+	agent{
+		node{
+		  label 'eks-name-i20-aws-us-1-green.kube-np.ebiz.home.com'
+		 }
+	}
+	stages {
+		stage('service operation'){
+				
+				steps {
+					withCredenial([file(credentialsId: 'EKSDeployerConfig', variable: 'config')]) {
+						sh '''
+						rm -f config
+						cp $config config
+						'''
+					}
+				    
+					script {
+						env.ENVIRONMENT = params.Application_ENVIRONMENT
+						env.MICROSERVICE = params.MICROSERVICE
+						env.LOGLEVEL = params.APPLICATION_ENVIRONMENT
+						env.SERVICETYPE= params.SERVICETYPE
+						env.RELEASE = "V1"
+						currentBuild.displayName= params.MICROSERVICE +"_" + params.APPLICATION_ENVIRONMENT + "_" + params.APPLICATION_lEVEL
+					}
+					sh '''
+						docker container run -i --privillaged --rm \
+						-u "$(id-u):$(id -g)" \
+						-e MICROSERVICE=$MICROSERVICE \
+						-e ENVIRONMENT=$ENVIRONMENT \
+						-e LOGLEVEL=$LOGLEVEL \
+						-e SERVICETYPE=$SERVICETYPE \
+						-v $(pwd)/config:/workdir/config \
+						-v /bin/kubectl:/workdir/config \
+						-v $(pwd):/workdir \
+						-w /workdir \
+						test.oneartifactory.centos-image:7.5.2 \
+						/workdir/ServiceLogLevel.sh $MICROSERVICE $ENVIRONMENT $LOGLEVEL $SERVICETYPE
+					'''
+				}
+		}
+	}
+
+	post{
+		always {
+			cleanws()
+		}
+	}
+}

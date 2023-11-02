@@ -1,0 +1,88 @@
+#!/bin/bash
+
+if (( $#<4 )); then
+printf "\
+usage : %s microservices environment loglevel servicetype\n\
+Arguments :
+--------
+microservice : A name of apollo microservice
+environment : The valid environments are dev sit uat prod and dr
+servicetype : java python
+java-loglevel : OFF FATAL ERROR WARN INFO DAA DEBUG TRACE ALL
+python-loglevel : CRITICAL ERROR WARNING INFO DATA DEBUG
+
+\n"  $0;
+exit 1;
+fi
+
+export PATH=$PATH:/workdir
+export KUBECONFIG=/workdir/config
+
+#supported environment
+
+declare ENVIRONMENT=("dev","sit","uat","prod","dr")
+declare -l DEPLOY_ENVIRONMENT=$2
+if ![[${ENVIRONMENT[*]} =~ $DEPLOY_ENVIRONMENT ]]; then
+   echo "Fatal Error : Invalid environment : $2" >&2;
+   exit 2;
+fi
+
+#supported loglevel
+declare JAVALEVEL=("OFF","fATAL","ERROR","WARN","INFO","DATA","DEBUG","TRACE","ALL")
+declare PYTHON_LEVEL=(OFF","fATAL","ERROR","WARN","INFO","DATA","DEBUG","TRACE","ALL")
+declare -u NEW_LEVEL=$3
+
+#SUPORTED SERCVICE TYPE
+declare - u SERCVICETYPE=("JAVA",PYTHON")
+declare PORT="64800"
+
+if ! [[ ${SERCVICETYPE[*]} =~$SERCVICETYPE ]]; then
+	echo "Fatal error : invalid servie type : $4" >&2;
+	exit 2;
+fi
+if[ "$SERCVICETYPE" == "JAVA" ]; then
+	if ! [[ ${JAVALEVEL[*]} =~ $NEW_LEVEL ]]; then
+	 echo "Fatal Erro : invalind logging level : $3" >&2;
+	 exit 2;
+	 fi
+elif  ["$SERCVICETYPE" == "PYTHON" ]; then
+	if ! [[ ${PYTHONLEVEL[*]} =~ $NEW_LEVEL ]]; then
+	 echo "Fatal Erro : invalind logging level : $3" >&2;
+	 exit 2;
+	 fi
+	 PORT="64800"
+fi
+
+#Microservice
+declare -l Microservice=$1
+echo "
+	LogLevel adjustment
+	------------------
+	Microservice : $microservice
+	Environemnt : $DEPLOY_ENVIRONMENT
+	LogLevel : $NEW_LEVEL
+	
+	" >&2
+	
+#Prepare payload
+
+declare PAYLOAD="{ \"ConfiguredLevel\":\"${NEW_LEVEL}\" }"
+declare NAMESPACE="i18v-${DEPLOY_ENVIRONMENT}-apollo"
+declare -i TotalErrors=0
+
+for INSTANCE IN $(kubectl -n ${NAMESPACE} get pods -o wide | grep -w ${Microservice} | awk '{print $6}')
+do
+	echo "Current Level : $(curl -x GET http://${INSTANCE}:${PORT}/home/loglevel 2>/dev/null)"
+set -vx
+	if curl -X POST -H 'Content-Type:Application/json' http://${INSTANCE}:${PORT}/home/loglevel -d "${PAYLOAD}" >/dev/null 2>$1
+	then
+	  echo "Microservice Instancce : ${INSTANCE} level is set to ${NEW_LEVEL}
+	  echo "New lgo level : $(culr -X GET http://${INSTANCE}:{PORT}/home/loglevel 2>/dev/null)"
+	else
+	  echo "Microservice Instancce : ${INSTANCE} failed t change level...";
+	  TotalErrors=TotalErrors+1
+	fi
+set +vx
+	echo
+done
+exit $TotalErrors

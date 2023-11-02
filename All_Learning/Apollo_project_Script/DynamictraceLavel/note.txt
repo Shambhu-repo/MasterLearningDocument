@@ -1,0 +1,4 @@
+we will configure the jenkin job which will take the tracelevel implemented shellscript and jenkinfile written in groovy
+. THis jenkin job will be helpful to change the trace lavel of the microservices runnning in eks .
+
+ 
